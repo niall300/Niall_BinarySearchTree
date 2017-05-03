@@ -170,6 +170,35 @@ namespace BST
 
         }
 
+        public void LevelOrderPrint()
+        {
+            Node current = root;
+            Queue<Node> q = new Queue<Node>();
+            LevelOrderPrint(current, q);
+        }
+
+        public void LevelOrderPrint(Node current, Queue<Node> q)
+        {
+            q.Enqueue(current);
+
+            while (q.Count != 0)
+            {
+                if (q.Peek().left != null)
+                {
+                    //put it on the queue
+                    q.Enqueue(q.Peek().left);
+                }
+                if (q.Peek().right != null)
+                {
+                    q.Enqueue(q.Peek().right);
+                }
+                Console.WriteLine(" | " + q.Dequeue().data);
+               
+                
+
+            }
+        }
+
         public void PrintInOrder()
         {
             Node current = root;
@@ -196,26 +225,26 @@ namespace BST
         {
             //working creates new tree
             //first node has the value 12 this is the root node
-            BinarySearchTree tree = new BinarySearchTree(12);
+            BinarySearchTree tree = new BinarySearchTree(20);
 
             //add to tree using recursion
-            tree.AddNode(7);
-            tree.AddNode(4);
-            tree.AddNode(5);
-            tree.AddNode(16);
-            tree.AddNode(1);
-            tree.AddNode(3);
-           
-            tree.AddNode(17);
+            //tree.AddNode(10);
+            tree.AddNode(15);
+            tree.AddNode(26);
+            tree.AddNode(12);
             tree.AddNode(18);
-            tree.AddNode(22);
+           
+            tree.AddNode(24);
+            tree.AddNode(28);
             tree.AddNode(4);
 
-            Console.WriteLine("There are {0} nodes in this tree", tree.count);
+          //  Console.WriteLine("There are {0} nodes in this tree", tree.count);
             
            
-            Console.WriteLine("The height of this tree is {0}", tree.getHeight());
-            tree.PrintInOrder();
+          //  Console.WriteLine("The height of this tree is {0}", tree.getHeight());
+          //  tree.PrintInOrder();
+
+            tree.LevelOrderPrint();
             
            
             Console.ReadLine();
